@@ -3,15 +3,18 @@
 # Title:        grammarnazi5000.py                  #
 # Devguy:       idont                               #
 # Date:         13-14th of August, 2016             #
+# License:      MIT                                 #
 #####################################################
-
-# Description:  grammarnazi5000 is a state of the art grammar nazi, it will
+#                                                   #
+# Description:                                      #
+#####################################################
+# grammarnazi5000 is a state of the art grammar nazi, it will
 # change Slack as we know it today. Not only does it check for basic grammar
 # mistakes, but it also calls you out on it (fucking loser!). grammarnazi5000
 # was born for a slackbot hackathon for the newbiecorner, organized by our
 # lovely lana - please take some credz. Awesome chall!
 #
-# RTFM (READ THE FUCKING MANUAL!!!) on how to install your new grammar nazi today!
+# RTFM (READ THE FUCKING MANUAL!!!) on how to install your grammar nazi today!
 
 
 import os
@@ -38,6 +41,10 @@ def handle_command(command, channel):
     elif re.match('^[a-z]', command):
         response = "I'm grammarnazi5000, and you gotta lern how2capitalize!"
 
+    elif (re.match(".*[^A-Za-z][Ll][Oo0]+[Ll][ \,\.\?\!]", command)):
+        response = "I'm grammarnazi5000. I doubt you are laughing."\
+                " Your laugh sounds terrbile anyways. Go home."
+
     elif (re.match(".*(([\,\?\!]{2,})|(\.{4,}))", command)):
         response = "I'm grammarnazi5000. Assshole, please stop exaggerating!"
 
@@ -45,11 +52,35 @@ def handle_command(command, channel):
         response = "I'm grammarnazi5000. Sure taht 'their' is not mixed "\
             "up with 'they're'?"
 
-    elif (not re.match("^[A-Z]['A-Za-z0-9]* [A-Za-z0-9]+", command)):
-        response = "I'm grammarnazi5000. This canot possibly be complete!"
+    elif (re.match(".*[Aa][Nn]{2}[Oo][Yy][Ii][Nn][Gg]", command)):
+        response = "I'm grammarnazi5000. You sir, are fucking annoying!"
+
+    elif (not re.match("^[A-Z]['A-Za-z0-9,]* [A-Za-z0-9]+", command)):
+        response = "I'm grammarnazi5000. This canot possibly be a complete"\
+                " sentence! You gotta learn how2spell, kiddo."
 
     elif (re.match("^[A-Z0-9 \!\?\.\,\\\\/\{\}\[\]\+\=\-\_]*$" ,command)):
-        response = "I'm grammarnazi5000. Dude, relxa!"
+        response = "I'm grammarnazi5000. Dude, relxa! It's not like your ass "\
+                "is on fire or anything.."
+
+    elif (re.match(".*[Hh][Oo0][Rr][Ss][Ee]", command)):
+        response = "I'm grammarnazi5000. You madame, <something about"\
+                " horses here>"
+
+    # Some bug here - need to fix
+    """
+    elif (not re.match(".*([\.\!\?] [A-Z0-9])|(\, [A-Za-z0-9])", command)):
+        if (not re.match("^[A-Z].*", command)):
+            response = "I'm grammarnazi5000. It hurts to see you write.. "\
+                    "Read a book once in a while!"
+    """
+
+    elif (re.match(".*[A-Za-z][Jj][Aa][Vv][Aa][ \,\.\?\!]", command)):
+        response = "I'm grammarnazi5000. Java sucks. Trust me!"
+
+    elif (re.match(".*[A-Za-z][Pp][Hh][Pp][ \,\.\?\!]", command)):
+        response = "I'm grammarnazi5000. Welcome to 2016 where people"\
+                " still go through the misery of writing PHP. WHY?!?!?!"
 
 
     if (response):
