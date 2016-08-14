@@ -86,6 +86,7 @@ def handle_command(command, channel):
     elif (not re.match(".*[\.\?\!]$", command)):
         response = "I'm grammarnazi5000. Ending a sentence properly, much?"
 
+
     if (response):
         slack_client.api_call("chat.postMessage", channel=channel,
                               text=response, as_user=True)
