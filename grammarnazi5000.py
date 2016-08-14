@@ -41,6 +41,9 @@ def handle_command(command, channel):
     elif re.match('^[a-z]', command):
         response = "I'm grammarnazi5000, and you gotta lern how2capitalize!"
 
+    elif re.match('.*\@grammarnazi5000', command):
+        response = "I'm grammarnazi5000. Hello, this is dog."
+
     elif (re.match(".*[^A-Za-z][Ll][Oo0]+[Ll][ \,\.\?\!]", command)):
         response = "I'm grammarnazi5000. I doubt you are laughing."\
                 " Your laugh sounds terrbile anyways. Go home."
@@ -55,7 +58,7 @@ def handle_command(command, channel):
     elif (re.match(".*[Aa][Nn]{2}[Oo][Yy][Ii][Nn][Gg]", command)):
         response = "I'm grammarnazi5000. You sir, are fucking annoying!"
 
-    elif (not re.match("^[A-Z]['A-Za-z0-9,]* [A-Za-z0-9]+", command)):
+    elif (re.match("^[^A-Z\@][^'A-Za-z0-9,]*[^\: ][^A-Za-z0-9]+", command)):
         response = "I'm grammarnazi5000. This canot possibly be a complete"\
                 " sentence! You gotta learn how2spell, kiddo."
 
@@ -68,12 +71,10 @@ def handle_command(command, channel):
                 " horses here>"
 
     # Some bug here - need to fix
-    """
-    elif (not re.match(".*([\.\!\?] [A-Z0-9])|(\, [A-Za-z0-9])", command)):
-        if (not re.match("^[A-Z].*", command)):
-            response = "I'm grammarnazi5000. It hurts to see you write.. "\
-                    "Read a book once in a while!"
-    """
+    # Supposed to check space and legit beginnings after punctuations
+    elif (re.match(".*[\,\.\!\?][A-Za-z0-9]", command)):
+        response = "I'm grammarnazi5000. It hurts to see you write.. "\
+                "Read a book once in a while!"
 
     elif (re.match(".*[A-Za-z][Jj][Aa][Vv][Aa][ \,\.\?\!]", command)):
         response = "I'm grammarnazi5000. Java sucks. Trust me!"
@@ -82,6 +83,8 @@ def handle_command(command, channel):
         response = "I'm grammarnazi5000. Welcome to 2016 where people"\
                 " still go through the misery of writing PHP. WHY?!?!?!"
 
+    elif (not re.match(".*[\.\?\!]$", command)):
+        response = "I'm grammarnazi5000. Ending a sentence properly, much?"
 
     if (response):
         slack_client.api_call("chat.postMessage", channel=channel,
