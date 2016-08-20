@@ -41,8 +41,15 @@ def handle_command(command, channel):
     elif re.match('^[a-z]', command):
         response = "I'm grammarnazi5000, and you gotta lern how2capitalize!"
 
-    elif re.match('.*\@grammarnazi5000', command):
+    elif re.match('.*%s' % AT_BOT, command):
         response = "I'm grammarnazi5000. Hello, this is dog."
+
+    elif (re.match(".*[Jj][Aa][Vv][Aa][ \,\.\?\!]", command)):
+        response = "I'm grammarnazi5000. Java sucks. Trust me!"
+
+    elif (re.match(".*[Pp][Hh][Pp][ \,\.\?\!]", command)):
+        response = "I'm grammarnazi5000. Welcome to 2016 where people"\
+                " still go through the misery of writing PHP. WHY?!?!?!"
 
     elif (re.match(".*[^A-Za-z][Ll][Oo0]+[Ll][ \,\.\?\!]", command)):
         response = "I'm grammarnazi5000. I doubt you are laughing."\
@@ -70,18 +77,10 @@ def handle_command(command, channel):
         response = "I'm grammarnazi5000. You madame, <something about"\
                 " horses here>"
 
-    # Some bug here - need to fix
-    # Supposed to check space and legit beginnings after punctuations
+    # Some bug??? Perhaps?
     elif (re.match(".*[\,\.\!\?][A-Za-z0-9]", command)):
         response = "I'm grammarnazi5000. It hurts to see you write.. "\
                 "Read a book once in a while!"
-
-    elif (re.match(".*[A-Za-z][Jj][Aa][Vv][Aa][ \,\.\?\!]", command)):
-        response = "I'm grammarnazi5000. Java sucks. Trust me!"
-
-    elif (re.match(".*[A-Za-z][Pp][Hh][Pp][ \,\.\?\!]", command)):
-        response = "I'm grammarnazi5000. Welcome to 2016 where people"\
-                " still go through the misery of writing PHP. WHY?!?!?!"
 
     elif (not re.match(".*[\.\?\!]$", command)):
         response = "I'm grammarnazi5000. Ending a sentence properly, much?"
@@ -127,8 +126,7 @@ Config.read('config.py')
 BOT_ID = ConfigSectionMap("Config")['id']
 TOKEN = ConfigSectionMap("Config")['token']
 slack_client = SlackClient(TOKEN)
-
-
+AT_BOT = "<@" + BOT_ID + ">"
 
 # int main - but in python and more like void than int. #yolo
 if __name__ == "__main__":
